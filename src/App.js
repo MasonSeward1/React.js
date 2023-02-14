@@ -1,24 +1,25 @@
-import logo from './logo.svg';
+import HomePage from './pages/HomePage';
 import './App.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import SubmitMovie from './pages/SubmitMovie';
+import MovieRatings from './pages/MovieRatings';
+import Navbar from './Navbar';
 
 function App() {
   return (
+    <BrowserRouter>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>""</h1>
+      <Navbar />
+      <div id='page-body'>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/MovieRatings" element={<MovieRatings />} />
+          <Route path="/SubmitMovie" element={<SubmitMovie />} />
+        </Routes>
+      </div>
     </div>
+    </BrowserRouter>
   );
 }
 
