@@ -25,18 +25,12 @@ const MovieRatings = () => {
 
 function MovieList(props) {
     return (
-        <ul>
+        <ul class="movie_display">
            {
                 props.movie_list.map(movie => [<li>Name: {movie.name}</li>, <li>Release Date: {movie.releaseDate}</li>, <li>Actors: {movie.actors}</li>,
-                <li id="poster">test</li>, <li>Rating: {movie.rating}</li>, <p><br></br></p>])
+                <li id="poster"><img src={movie.poster} alt="movie poster"></img></li>, <li>Rating: {movie.rating}</li>, <p><br></br></p>])
            }
         </ul>
-    )
-}
-
-function Header(props) {
-    return (
-        <h1>{props.name} Movie Ratings</h1>
     )
 }
 

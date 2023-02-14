@@ -30,3 +30,8 @@ nav a:hover {
   background: black;
   color: white;
 }
+
+.movie_display {
+  text-align: center;
+  list-style-type: none;
+}
