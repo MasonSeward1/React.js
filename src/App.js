@@ -5,7 +5,6 @@ import SubmitMovie from './pages/SubmitMovie';
 import MovieRatings from './pages/MovieRatings';
 import Navbar from './Navbar';
 
-
 function App() {
   return (
     <BrowserRouter>

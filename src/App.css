@@ -31,7 +31,7 @@ nav a:hover {
   color: white;
 }
 
-.movie_display {
+#movie_display {
   text-align: center;
   list-style-type: none;
 }
