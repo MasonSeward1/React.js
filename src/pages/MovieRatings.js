@@ -19,7 +19,6 @@ const MovieRatings = () => {
     return (
         <>
             <MovieList movie_list={(movies)}></MovieList>
-            <button onClick = { () => { console.log("Click"); setMovies([]) }}>Remove Movie</button>
         </>
     )
 }
@@ -28,9 +27,8 @@ function MovieList(props) {
     return (
         <ul>
            {
-           props.movie_list.map(movie => [<li>Name: {movie.name}</li>, <li>Release Date: {movie.releaseDate}</li>, <li>Actors: {movie.actors}</li>,
-        <li id="poster">test</li>, <li>Rating: {movie.rating}</li>, 
-        <button onClick = { () => { console.log("Click"); MovieRatings.setMovies([]) }}>Remove Movie</button>])
+                props.movie_list.map(movie => [<li>Name: {movie.name}</li>, <li>Release Date: {movie.releaseDate}</li>, <li>Actors: {movie.actors}</li>,
+                <li id="poster">test</li>, <li>Rating: {movie.rating}</li>, <p><br></br></p>])
            }
         </ul>
     )
