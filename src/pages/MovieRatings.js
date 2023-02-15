@@ -25,7 +25,7 @@ const MovieRatings = () => {
            {
                 movies.map(movie => 
                 [
-                    <li key={movie.id}>Name: {movie.name}</li>, 
+                    <li key={movie.id}>Name: {movie.title}</li>, 
                     <li>Release Date: {movie.releaseDate}</li>, 
                     <li>Actors: {movie.actors}</li>,
                     <li id="poster"><img src={movie.poster} alt="movie poster"></img></li>, 
