@@ -2,7 +2,6 @@ import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 
 function SubmitMovieReview(props) {
-    const intMovieId = useRef();
     const txtMovieTitle = useRef();
     const txtMovieRelease = useRef();
     const txtMovieActors = useRef();
@@ -16,24 +15,36 @@ function SubmitMovieReview(props) {
             movieData.push(movie);
         })
         
-        const id = intMovieId.current.value;
         const title = txtMovieTitle.current.value;
         const release = txtMovieRelease.current.value;
         const actors = txtMovieActors.current.value;
         const rating = intMovieRating.current.value;
-        //const choiceBoxValue = choiceMoviePoster.current.value;
+
+        const id = movieData.length + 1;
+        console.log(id);
+        const choiceBoxValue = choiceMoviePoster.current.value;
+        
+        let submittedMoviePoster = "";
+
+        if (choiceBoxValue === "1")
+        {
+            submittedMoviePoster = "https://static.vecteezy.com/system/resources/previews/010/973/697/original/movie-poster-cinema-banner-with-popcorn-soda-clapperboard-glowing-cinema-banner-illustration-vector.jpg";
+        }
+        else
+        {
+            submittedMoviePoster = prompt("Enter link to movie poster");
+        }
 
         movieData.push(
-                {"id": parseInt(id)},
-                {"title": title},
-                {"releaseDate": release},
-                {"actors": actors},
-                {"poster": "https://upload.wikimedia.org/wikipedia/en/c/ca/Die_Hard_%281988_film%29_poster.jpg"},
-                {"rating": rating}
+                {"id": id,
+                "title": title,
+                "releaseDate": release,
+                "actors": actors,
+                "poster": submittedMoviePoster,
+                "rating": rating}
         )
         props.setMovies(movieData);
 
-        intMovieId.current.value = "";
         txtMovieTitle.current.value = "";
         txtMovieRelease.current.value = "";
         txtMovieActors.current.value = "";
@@ -46,13 +57,7 @@ function SubmitMovieReview(props) {
         <>
         <Link to="/"></Link>
         <form onSubmit={submit} id="form_display">
-            <input
-                ref={intMovieId}
-                type="text"
-                pattern="[0-9]*"
-                placeholder="Movie Id">
-            </input>
-            <br></br>
+            <h1>'</h1>
             <input
                 ref={txtMovieTitle}
                 type="text"
@@ -63,7 +68,7 @@ function SubmitMovieReview(props) {
                 ref={txtMovieRelease}
                 type="text"
                 pattern="^[0-9]{4}-[0-9]{2}-[0-9]{2}"
-                placeholder="Release Date">  
+                placeholder="Release Date (yyyy-mm-dd)">  
             </input>
             <br></br>
             <input
@@ -75,13 +80,14 @@ function SubmitMovieReview(props) {
             <input
                 ref={intMovieRating}
                 type="text"
-                pattern="[0-9]*"
-                placeholder="Rating">  
+                pattern="[0-5]*"
+                placeholder="Rating (0-5)">  
             </input>
             <br></br>
-            <select ref={choiceMoviePoster}>
-                <option value="1">Allow Devs to choose photo</option>
-                <option value="2">Select a movie poster photo from device</option>
+            <select 
+                ref={choiceMoviePoster}>
+                    <option value="1">Allow Devs to choose photo</option>
+                    <option value="2">Enter movie poster link</option>
             </select>
             <br></br>
             <button>Submit Rating</button>

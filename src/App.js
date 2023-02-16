@@ -19,7 +19,6 @@ function App() {
 
   return (
     <>
-    <h1>`</h1>
       <Navbar />
          <Routes>
            <Route path="/" element={<MovieRatings movies={(movie)} setMovies={(setMovie)}/>} />
