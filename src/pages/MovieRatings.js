@@ -25,10 +25,10 @@ const MovieRatings = () => {
            {
                 movies.map(movie => 
                 [
-                    <li key={movie.id}>Name: {movie.title}</li>, 
+                    <li key={movie.id}>Movie Title: {movie.title}</li>, 
+                    <li id="poster"><img src={movie.poster} alt="movie poster"></img></li>,
                     <li>Release Date: {movie.releaseDate}</li>, 
-                    <li>Actors: {movie.actors}</li>,
-                    <li id="poster"><img src={movie.poster} alt="movie poster"></img></li>, 
+                    <li>Actors: {movie.actors}</li>, 
                     <li>Rating: {movie.rating}</li>, <button type="button" onClick = { () => {
                         console.log("Movie Deleted"); removeMovie(movie.id)}}>Remove Movie</button>, <p></p>
                 ])
