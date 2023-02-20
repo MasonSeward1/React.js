@@ -1,3 +1,5 @@
+/* Navbar code from linkedin learning tutorial */
+
 nav {
   border-bottom: 4px solid black;
   text-align: center;
@@ -31,6 +33,10 @@ nav a:hover {
   color: white;
 }
 
+
+
+
+
 #movie_display {
   text-align: center;
   list-style-type: none;
@@ -39,4 +45,14 @@ nav a:hover {
 img{
   width:100%;
   max-width:225px;
+}
+
+#form_display {
+  border-style: solid;
+  max-width: fit-content;
+  text-align: center;
+}
+
+form {
+  display: inline-block;
 }

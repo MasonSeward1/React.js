@@ -25,20 +25,7 @@ function App() {
            <Route path="/SubmitMovie" element={<SubmitMovieReview movies={(movie)} setMovies={(setMovie)}/>} />
          </Routes>
     </>
-
-    // <BrowserRouter>
-    // <div className="App">
-    //   <h1>""</h1>
-    //   <Navbar />
-    //   <div id='page-body'>
-    //     <Routes>
-    //       <Route path="/" element={<MovieRatings movies={(movie)} setMovies={(setMovie)}/>} />
-    //       <Route path="/SubmitMovie" element={<SubmitMovieReview movies={(movie)} setMovies={(setMovie)}/>} />
-    //     </Routes>
-    //   </div>
-    // </div>
-    // </BrowserRouter>
-  );
+    );
 }
 
 export default App;

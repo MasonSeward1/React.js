@@ -11,10 +11,10 @@ const MovieRatings = (props) => {
         return <h1>Loading...</h1>
     }
 
-
     return (
         <>
             <Link to="/SubmitMovie"></Link>
+            <h1>`</h1>
             <ul id="movie_display">
             {
                     movies.map(movie => 
@@ -25,7 +25,7 @@ const MovieRatings = (props) => {
                         <li>Actors: {movie.actors}</li>, 
                         <li>Rating: {movie.rating}</li>, 
                         <button type="button" onClick = { () => {
-                            console.log("Movie Deleted"); removeMovie(movie.id)}}>Remove Movie</button>, <p></p>
+                            console.log("Movie `" + movie.title + "` has been deleted"); removeMovie(movie.id)}}>Remove Movie</button>, <p></p>
                     ])
             }
             </ul>
