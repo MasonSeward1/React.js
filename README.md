@@ -1,4 +1,4 @@
-#Branch containing Assignment 2 code
+# Branch containing Assignment 2 code
 
 # Recreation of GitHub project to resolve errors and restore commit history
 
