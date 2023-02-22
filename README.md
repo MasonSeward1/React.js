@@ -1,10 +1,7 @@
-# Recration of GitHub project to resolve errors and restore commit history
+# Github project structure was changed on 2023-02-22. The code was split into a1 and a2 directories to allow for the next assignment's code to be added.
+# None of the code inside a1_front-end has been changed asides from being moved into a new folder
 
-
-
-
-
-
+# Recreation of GitHub project to resolve errors and restore commit history
 
 
 
