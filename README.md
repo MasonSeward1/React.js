@@ -1,5 +1,5 @@
-# Github project structure was changed on 2023-02-22. The code was split into a1 and a2 directories to allow for the next assignment's code to be added.
-# None of the code inside a1_front-end has been changed asides from being moved into a new folder
+# Important: Commits after 2023-02-20
+With the creation of A2, I had gotten confused with what github repo to use. I have decided to copy the source code from a1 to a new repo for manipulation through assignment 2. I cannot get the commits to revert, so all A1 code is inside the A1 directory. It has not been edited, and github has made a note in the commits that they were moved to a new file but unchanged. Sorry for the inconvenience.
 
 # Recreation of GitHub project to resolve errors and restore commit history
 
