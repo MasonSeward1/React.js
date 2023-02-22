@@ -1,0 +1,46 @@
+[
+    {
+      "id":1,
+      "title":"Die Hard",
+      "releaseDate":"1988-07-22",
+      "actors":"Bruce Willis, Alan Rickman, Bonnie Bedelia, Reginald VelJohnson, William Atherton, Alexander Godunov, Paul Gleason",
+      "poster":"https://upload.wikimedia.org/wikipedia/en/c/ca/Die_Hard_%281988_film%29_poster.jpg",
+      "rating":5
+    },
+
+    {
+      "id":2,
+      "title":"The Karate Kid",
+      "releaseDate":"1984-06-22",
+      "actors":"Ralph Macchio, Pat Morita, William Zabka, Elisabeth Shue, Martin Kove, Randee Heller, Chad McQueen, Rob Garrison",
+      "poster":"https://theautographsource.com/wp-content/uploads/2021/03/Karate-Kid-MP-1-d-scaled.jpg",
+      "rating":5
+    },
+
+    {
+      "id":3,
+      "title":"Fall",
+      "releaseDate":"2022-08-12",
+      "actors":"Virginia Gardner, Grace Fulton, Jeffrey Dean Morgan, Mason Gooding, Jasper Cole, Julia Pace Mitchell",
+      "poster":"https://cdn.cinematerial.com/p/136x/ycpa82jo/fall-philippine-movie-poster-sm.jpg?v=1660226085",
+      "rating":4
+    },
+
+    {
+        "id":4,
+      "title":"Spiderman: Far From Home",
+      "releaseDate":"2019-07-02",
+      "actors":"Tom Holland, Zendaya, Jake Gyllenhaal, Samuel L. Jackson, Marisa Tomei, Robert Downey Jr.",
+      "poster":"https://upload.wikimedia.org/wikipedia/en/b/bd/Spider-Man_Far_From_Home_poster.jpg",
+      "rating":4
+    },
+
+    {
+        "id":5,
+      "title":"Avengers: Endgame",
+      "releaseDate":"2019-04-26",
+      "actors":"Robert Downey Jr., Chris Evans, Mark Ruffalo, Chris Hemsworth",
+      "poster":"https://upload.wikimedia.org/wikipedia/en/0/0d/Avengers_Endgame_poster.jpg",
+      "rating":4
+    }
+]
