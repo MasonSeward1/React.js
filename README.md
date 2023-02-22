@@ -1,5 +1,4 @@
-# Important: Commits after 2023-02-20
-With the creation of A2, I had gotten confused with what github repo to use. I have moved all assignment 2 code to a new branch. However, I cannot get the commits to revert, so all A1 code is inside the A1 directory. It has not been edited, and github has made a note in the commits that they were moved to a new file but unchanged. Sorry for the inconvenience.
+#Branch containing Assignment 2 code
 
 # Recreation of GitHub project to resolve errors and restore commit history
 
