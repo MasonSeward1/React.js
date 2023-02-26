@@ -1,6 +1,6 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import SubmitMovieReview from './pages/SubmitMovie';
+import SubmitMovieReview from './pages/FormPage';
 import MovieRatings from './pages/MovieRatings';
 import Navbar from './Navbar';
 import React, { useState, useEffect } from "react";
@@ -11,7 +11,7 @@ function App() {
   let [movie, setMovie] = useState(null);
 
   useEffect( () => {
-    fetch("./movies.json")
+    fetch('/movies')
     .then(reponse => reponse.json())
     .then(setMovie)
     .catch(e=>console.log(e.message))
