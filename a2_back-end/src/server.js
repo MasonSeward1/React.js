@@ -3,21 +3,31 @@ const app = express();
 const port = 8000;
 app.use(express.urlencoded({extended: false}));
 import fs from 'fs';
-
-app.get('/', (req, res) => {
-    res.send("Hello World!")
-});
+import { MongoClient } from 'mongodb';
 
 const movieData = JSON.parse(fs.readFileSync('./movies.json'));
 console.log(movieData);
 
-app.get('/movies', (req, res) => {
-    res.json(movieData)
+app.get('/movies', async (req, res) => {
+    //res.json(movieData)
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-movieratings-db');
+    const movieData = await db.collection('articles').find({}).toArray();
+
+    console.log(movieData);
+    console.log("Here");
+    res.json(movieData);
 })
 
-app.post('/updateMovies', (req, res) => {
-    res.redirect("/");
-    movieData.push( {
+app.post('/updateMovies', async (req, res) => { 
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-movieratings-db');
+
+    const insertOperation = await db.collection('articles').insertOne({
         "id": movieData.length + 1,
         "title": req.body.title,
         "poster": req.body.poster,
@@ -25,9 +35,21 @@ app.post('/updateMovies', (req, res) => {
         "actors": req.body.actors,
         "rating": req.body.rating
     })
-    saveData();
-    console.log(req.body);
-    res.send(req.body);
+    console.log(insertOperation);
+    res.redirect('/');
+
+    // res.redirect("/");
+    // movieData.push( {
+        // "id": movieData.length + 1,
+        // "title": req.body.title,
+        // "poster": req.body.poster,
+        // "releaseDate": req.body.releaseDate,
+        // "actors": req.body.actors,
+        // "rating": req.body.rating
+    // })
+    // saveData();
+    // console.log(req.body);
+    // res.send(req.body);
 })
 
 const saveData = () => {
