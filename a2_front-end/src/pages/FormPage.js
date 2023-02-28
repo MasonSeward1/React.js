@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import { React, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 function SubmitMovieReview(props) {
@@ -7,14 +7,8 @@ function SubmitMovieReview(props) {
     const txtMovieActors = useRef();
     const intMovieRating = useRef();
 
-    // const [image, setImage] = useState([]);
-    // function onImageChange(e) {
-    //     setImage([...e.target.files]);
-    // }
-    
-
     return (
-        <Form method="post" action="/updateMovies" id="form_display">
+        <Form method="post" action="/api/addMovie" id="form_display" encType="multipart/form-data">
             <Form.Group>
                 <Form.Label>Enter The Movie Title</Form.Label>
                 <Form.Control name='title' ref={txtMovieTitle} type="text" placeholder="Movie Title"></Form.Control>

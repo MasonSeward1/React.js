@@ -26,7 +26,7 @@ const MovieRatings = (props) => {
           redirect: 'follow'
         };
 
-        fetch("/removeMovies", requestOptions)
+        fetch("/api/removeMovies", requestOptions)
         .then(response => response.text())
         .then(printLogInfo)
         .catch(error => console.log('error', error));
@@ -44,7 +44,7 @@ const MovieRatings = (props) => {
                     movies.map(movie => 
                     [
                         <li key={movie.id}>Movie Title: {movie.title}</li>, 
-                        <li id="poster"><img src={movie.poster} alt="movie poster"></img></li>,
+                        <li id="poster"><img src={movie.poster} alt={movie.poster}></img></li>,
                         <li>Release Date: {movie.releaseDate}</li>, 
                         <li>Actors: {movie.actors}</li>, 
                         <li>Rating: {movie.rating}</li>, 
