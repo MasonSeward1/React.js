@@ -4,6 +4,7 @@ import SubmitMovieReview from './pages/FormPage';
 import MovieRatings from './pages/MovieRatings';
 import NavigationBar from './Navbar';
 import React, { useState, useEffect } from "react";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 function App() {

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { Button } from 'react-bootstrap';
+import Button from 'react-bootstrap/Button';
 
 
 const MovieRatings = (props) => {
@@ -39,7 +39,6 @@ const MovieRatings = (props) => {
     return (
         <>
             <Link to="/SubmitMovie"></Link>
-            <h1>`</h1>
             <ul id="movie_display">
             {
                     movies.map(movie => 
@@ -49,7 +48,7 @@ const MovieRatings = (props) => {
                         <li>Release Date: {movie.releaseDate}</li>, 
                         <li>Actors: {movie.actors}</li>, 
                         <li>Rating: {movie.rating}</li>, 
-                        <Button onClick = { () => {removeMovie(movie.title)}}>Remove Movie</Button>,
+                        <Button variant="warning" onClick = { () => {removeMovie(movie.title)}}>Delete Movie</Button>,
                         <p></p>
                     ])
             }
