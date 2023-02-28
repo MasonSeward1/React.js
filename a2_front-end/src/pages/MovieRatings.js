@@ -1,11 +1,36 @@
 import { Link } from "react-router-dom";
+import { Button } from 'react-bootstrap';
+
 
 const MovieRatings = (props) => {
     let movies = props.movies;
 
-    function removeMovie(id) {
-        props.setMovies(movies.filter((item) => item.id !== id));
+    function printLogInfo(string)
+    {
+        console.log(string)
+        
     }
+
+    function removeMovie(title) {
+        props.setMovies(movies.filter((item) => item.title !== title));
+        var myHeaders = new Headers();
+        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
+        
+        var urlencoded = new URLSearchParams();
+        urlencoded.append("title", title); // use req and res
+        
+        var requestOptions = {
+          method: 'POST',
+          headers: myHeaders,
+          body: urlencoded,
+          redirect: 'follow'
+        };
+
+        fetch("/removeMovies", requestOptions)
+        .then(response => response.text())
+        .then(printLogInfo)
+        .catch(error => console.log('error', error));
+        }
 
     if (movies == null) {
         return <h1>Loading...</h1>
@@ -24,8 +49,8 @@ const MovieRatings = (props) => {
                         <li>Release Date: {movie.releaseDate}</li>, 
                         <li>Actors: {movie.actors}</li>, 
                         <li>Rating: {movie.rating}</li>, 
-                        <button type="button" onClick = { () => {
-                            console.log("Movie `" + movie.title + "` has been deleted"); removeMovie(movie.id)}}>Remove Movie</button>, <p></p>
+                        <Button onClick = { () => {removeMovie(movie.title)}}>Remove Movie</Button>,
+                        <p></p>
                     ])
             }
             </ul>

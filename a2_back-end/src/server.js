@@ -22,35 +22,36 @@ app.get('/movies', async (req, res) => {
 })
 
 app.post('/updateMovies', async (req, res) => { 
+    saveData();
     const client = new MongoClient('mongodb://127.0.0.1:27017');
     await client.connect();
 
     const db = client.db('react-movieratings-db');
 
     const insertOperation = await db.collection('articles').insertOne({
-        "id": movieData.length + 1,
         "title": req.body.title,
         "poster": req.body.poster,
         "releaseDate": req.body.releaseDate,
         "actors": req.body.actors,
         "rating": req.body.rating
     })
-    console.log(insertOperation);
+    //console.log(req.body.poster);
+    client.close();
     res.redirect('/');
-
-    // res.redirect("/");
-    // movieData.push( {
-        // "id": movieData.length + 1,
-        // "title": req.body.title,
-        // "poster": req.body.poster,
-        // "releaseDate": req.body.releaseDate,
-        // "actors": req.body.actors,
-        // "rating": req.body.rating
-    // })
-    // saveData();
-    // console.log(req.body);
-    // res.send(req.body);
 })
+
+app.post('/removeMovies', async (req, res) => {
+    //props.setMovies here
+    const client = new MongoClient('mongodb://127.0.0.1:27017');
+    await client.connect();
+
+    const db = client.db('react-movieratings-db');
+
+    const deleteOperation = await db.collection('articles').deleteOne({"title": req.body.title})
+    console.log(`Movie ${req.body.title} has been deleted.`);
+
+    client.close();
+    })
 
 const saveData = () => {
     const jsonContent = JSON.stringify(movieData);
