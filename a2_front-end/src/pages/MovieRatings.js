@@ -5,36 +5,20 @@ import Button from 'react-bootstrap/Button';
 const MovieRatings = (props) => {
     let movies = props.movies;
 
-    function printLogInfo(string)
-    {
-        console.log(string)
-        
-    }
-
     function removeMovie(title) {
         props.setMovies(movies.filter((item) => item.title !== title));
-        var myHeaders = new Headers();
-        myHeaders.append("Content-Type", "application/x-www-form-urlencoded");
-        
-        var urlencoded = new URLSearchParams();
-        urlencoded.append("title", title); // use req and res
-        
-        var requestOptions = {
-          method: 'POST',
-          headers: myHeaders,
-          body: urlencoded,
-          redirect: 'follow'
-        };
+        var myHeader = new Headers();
+        myHeader.append("Content-Type", "application/x-www-form-urlencoded")
+        var url = new URLSearchParams();
+        url.append("title", title)
 
-        fetch("/api/removeMovies", requestOptions)
+        fetch("/api/removeMovies", {method: 'post', headers: myHeader, body: url, redirect: 'follow'})
         .then(response => response.text())
-        .then(printLogInfo)
         .catch(error => console.log('error', error));
         }
 
-    if (movies == null) {
-        return <h1>Loading...</h1>
-    }
+    if (movies == null)
+        return <h1>Loading Movie Data...</h1>
 
     return (
         <>

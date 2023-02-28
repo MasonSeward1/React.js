@@ -1,7 +1,8 @@
 import { React, useRef } from "react";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-function SubmitMovieReview(props) {
+
+export default function SubmitMovieReview() {
     const txtMovieTitle = useRef();
     const txtMovieRelease = useRef();
     const txtMovieActors = useRef();
@@ -32,5 +33,3 @@ function SubmitMovieReview(props) {
         </Form>
     );
 }
-
-export default SubmitMovieReview;
