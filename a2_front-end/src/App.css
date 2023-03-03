@@ -1,6 +1,9 @@
 #movie_display {
     text-align: center;
-    list-style-type: none;
+    
+    padding-bottom: 3%;
+    padding-left: 25%;
+    padding-right: 25%;
   }
   
 img{

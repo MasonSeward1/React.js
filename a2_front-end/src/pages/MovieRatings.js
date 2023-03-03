@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import Button from 'react-bootstrap/Button';
+import { Button, Image, ListGroup } from 'react-bootstrap';
 
 
 const MovieRatings = (props) => {
@@ -27,13 +27,14 @@ const MovieRatings = (props) => {
             {
                     movies.map(movie => 
                     [
-                        <li key={movie.id}>Movie Title: {movie.title}</li>, 
-                        <li id="poster"><img src={movie.poster} alt={movie.poster}></img></li>,
-                        <li>Release Date: {movie.releaseDate}</li>, 
-                        <li>Actors: {movie.actors}</li>, 
-                        <li>Rating: {movie.rating}</li>, 
-                        <Button variant="warning" onClick = { () => {removeMovie(movie.title)}}>Delete Movie</Button>,
-                        <p></p>
+                        <ListGroup id="movie_display">
+                            <ListGroup.Item key={movie.id}>Movie Title: {movie.title}</ListGroup.Item>
+                            <ListGroup.Item id='poster'><Image rounded src={movie.poster} alt={movie.poster}></Image></ListGroup.Item>
+                            <ListGroup.Item>Release Date: {movie.releaseDate}</ListGroup.Item>
+                            <ListGroup.Item>Actors: {movie.actors}</ListGroup.Item>
+                            <ListGroup.Item>Rating: {movie.rating}</ListGroup.Item>
+                            <Button variant="warning" onClick = { () => {removeMovie(movie.title)}}>Delete Movie</Button>
+                        </ListGroup>
                     ])
             }
             </ul>
