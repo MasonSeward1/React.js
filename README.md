@@ -1,9 +1,4 @@
-# Branch containing Assignment 2 code
-
-# Recreation of GitHub project to resolve errors and restore commit history
-
-
-
+# Branch containing the code for the CP3010 Project.
 
 # Getting Started with Create React App
 

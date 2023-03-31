@@ -6,11 +6,11 @@ function NavigationBar() {
   return (
     <Navbar bg="dark" sticky='top' variant='dark' expand="lg">
       <Container>
-        <Navbar.Brand>Assignment 2 Reviews</Navbar.Brand>
+        <Navbar.Brand>CP3010 Project - Word Guessing Game!</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
           <Nav className="me-auto">
-            <Nav.Link href="/">Submitted Movie Ratings</Nav.Link>
-            <Nav.Link href="/SubmitMovie">Submit a Movie Rating!</Nav.Link>
+            <Nav.Link href="/">Try and guess the word!</Nav.Link>
+            <Nav.Link href="/ViewStatistics">View Statistics</Nav.Link>
           </Nav>
       </Container>
     </Navbar>

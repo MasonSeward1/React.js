@@ -1,7 +1,7 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import SubmitMovieReview from './pages/FormPage';
-import MovieRatings from './pages/MovieRatings';
+import SubmitWordGuess from './pages/SubmitGuess';
+import ViewGameStats from './pages/Statistics';
 import NavigationBar from './Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -11,8 +11,8 @@ function App() {
     <>
       <NavigationBar />
          <Routes>
-           <Route path="/" element={<MovieRatings />} />
-           <Route path="/SubmitMovie" element={<SubmitMovieReview />} />
+           <Route path="/" element={<SubmitWordGuess />} />
+           <Route path="/ViewStatistics" element={<ViewGameStats />} />
          </Routes>
     </>
     );
