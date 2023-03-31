@@ -2,17 +2,16 @@ import { React, useRef } from "react";
 import { Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
 
 export default function SubmitWordGuess(props) {
-    var guessesLeft = props.guessesLeft;
     var currentDate = new Date().getDate()
     var lastPlayed = localStorage.getItem("lastPlayed")
     const txtWordGuess = useRef();
     console.log(currentDate)
     console.log(lastPlayed)
 
-    if (currentDate == lastPlayed) {
+    if (currentDate === lastPlayed) {
         return <h1>You have already guessed within 24h.</h1>
     }
-    else if ((guessesLeft !== 0 && currentDate !== lastPlayed) || lastPlayed.length === 0) {
+    else if ((currentDate !== lastPlayed) || lastPlayed.length === 0) {
         localStorage.setItem("lastPlayed", currentDate)
         
         return (
@@ -25,7 +24,7 @@ export default function SubmitWordGuess(props) {
                 </Form.Group>
                 <Button variant="primary" type="submit">Submit Guess!</Button>
                 <br />
-                <Form.Label>Date last played: {lastPlayed}</Form.Label>
+                <Form.Label>Day last played: {lastPlayed}</Form.Label>
             </Form>
         );
     }
