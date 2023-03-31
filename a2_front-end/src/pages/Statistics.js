@@ -29,8 +29,6 @@ const ViewGameStats = (props) => {
                         <ListGroup.Item>Number of 10-win-streaks: {stat.winStreak}</ListGroup.Item>
                     </ListGroup>
                     ])
-                
-                
             }
             </ul>
         </>

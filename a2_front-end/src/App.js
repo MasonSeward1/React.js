@@ -23,7 +23,7 @@ function App() {
     <>
       <NavigationBar />
          <Routes>
-           <Route path="/" element={<SubmitWordGuess />} />
+           <Route path="/" element={<SubmitWordGuess guessesLeft={(gameStatistics.guessesLeft)}/>} />
            <Route path="/ViewStatistics" element={<ViewGameStats stats={(gameStatistics)} />} />
          </Routes>
     </>
