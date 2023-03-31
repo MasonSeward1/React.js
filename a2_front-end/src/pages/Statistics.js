@@ -3,22 +3,34 @@ import { ListGroup } from 'react-bootstrap';
 
 
 const ViewGameStats = (props) => {
-    let stats = props.stats;
+    let statistics = props.stats;
 
-    if (stats == null)
-        return <h1>Loading Statistic Data...</h1>
+    if (statistics == null)
+        return ( 
+            <>
+                <h1>Loading Statistic Data...</h1>,
+                <p>If the data does not appear in a moment, please refresh the page.</p>
+            </>
+        )
+    
+    console.log(statistics.winStreak);
 
     return (
         <>
-            <Link to="/SubmitMovie"></Link>
+            <Link to="/ViewStatistics"></Link>
             <ul id="movie_display">
             {
-                    stats.map(stat => 
+                statistics.map(stat => 
                     [
-                        <ListGroup id="movie_display">
-                            <ListGroup.Item key={stat.id}>Times Played: {stat.played}</ListGroup.Item>
-                        </ListGroup>
+                    <ListGroup id="movie_display">
+                        <ListGroup.Item >Guesses left: {stat.guessesLeft}</ListGroup.Item>
+                        <ListGroup.Item>Times Played: {stat.timesPlayed}</ListGroup.Item>
+                        {/* <ListGroup.Item>Average Score: {stats.avgScore}</ListGroup.Item> */}
+                        <ListGroup.Item>Number of 10-win-streaks: {stat.winStreak}</ListGroup.Item>
+                    </ListGroup>
                     ])
+                
+                
             }
             </ul>
         </>
