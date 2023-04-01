@@ -45,6 +45,15 @@ app.get('/api/loadStatistics', async (req, res) => {
     }
 });
 
+// Load word
+app.get('/api/loadWord', async (req, res) => {
+    await client.connect();
+
+    const wordData = await db.collection('words').aggregate([{$sample:{size:1}}]).toArray();
+    res.json(wordData);
+    
+});
+
 app.listen(8000, () => {
     console.log(`Example app listening on port ${port}`)
 });
