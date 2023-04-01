@@ -20,7 +20,7 @@ export default function HandleGameLogic(props) {
                 <Form.Group>
                     <Form.Label>Enter your guess!</Form.Label>
                     <OverlayTrigger placement="right" overlay={<Tooltip id='tooltip-right'>Any Character</Tooltip>}>
-                        <Form.Control name='title' ref={txtWordGuess} type="text" placeholder="Your Guess" />
+                        <Form.Control name='title' ref={txtWordGuess} type="text" placeholder="Your 5 Letter Word Guess" />
                     </OverlayTrigger>
                 </Form.Group>
                 <Button variant="primary" type="submit">Submit Guess!</Button>

@@ -23,8 +23,10 @@ function App() {
     useEffect( () => {
       fetch('/api/loadWord')
       .then(response => response.json())
-      .then(r => console.log(r))
-      .then(setWords)
+      .then(json => {
+        const randomWord = json[Math.floor(Math.random()*json.length)]
+        setWords(randomWord.word);
+      })
       .catch(e=>console.log(e.message))
     }, [])
 
