@@ -11,15 +11,7 @@ app.use(express.urlencoded({extended: false}));
 
 // Submit guess
 app.post('/api/guessWord', async (req, res) => { 
-    await client.connect();
-
-    const insertOperation = await db.collection('ClientData').insertOne({
-        "eligable": req.body.eligable,
-        "guessesLeft": req.body.guessesLeft,
-        "timesPlayed": req.body.timesPlayed,
-        "winStreak": req.body.winStreak
-    })
-    client.close();
+    //TODO fill in logic for guessing word. The guess submission is already linked.
     console.log("Connection Closed");
     res.redirect('/');
 });
@@ -36,7 +28,8 @@ app.get('/api/loadStatistics', async (req, res) => {
                 "eligable": true,
                 "guessesLeft": 3,
                 "timesPlayed": 0,
-                "winStreak": 0
+                "winStreak": 0,
+                "dataType": "player"
             })
     }
     else
@@ -53,6 +46,17 @@ app.get('/api/loadWord', async (req, res) => {
     res.json(wordData);
     
 });
+
+// Update the timesPlayed record in the db
+app.get('/api/updateTimesPlayed', async (req, res) => 
+{
+    await client.connect();
+    
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $inc: { timesPlayed: 1 }}
+    )
+})
 
 app.listen(8000, () => {
     console.log(`Example app listening on port ${port}`)

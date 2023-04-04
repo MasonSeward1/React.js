@@ -1,10 +1,12 @@
 import { React, useRef } from "react";
 import { Button, Form, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import { useEffect } from "react";
 
 export default function HandleGameLogic(props) {
     const words = props.words;
     var currentDate = new Date().getDate()
-    var lastPlayed = localStorage.getItem("lastPlayed")
+    var lastPlayed = localStorage.getItem("lastPlayed");
+
     const txtWordGuess = useRef();
 
     if (currentDate === lastPlayed) {
@@ -14,7 +16,9 @@ export default function HandleGameLogic(props) {
 
     else if ((currentDate !== lastPlayed) || lastPlayed.length === 0) {
         localStorage.setItem("lastPlayed", currentDate)
-        
+
+        fetch('/api/updateTimesPlayed').then(reponse => reponse.json()).catch(e=>console.log(e.message));
+
         return (
             <Form method="post" action="/api/guessWord" id="form_display">
                 <Form.Group>
