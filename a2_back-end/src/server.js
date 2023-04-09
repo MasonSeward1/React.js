@@ -12,6 +12,10 @@ app.use(express.urlencoded({extended: false}));
 // Submit guess
 app.post('/api/guessWord', async (req, res) => { 
     //TODO fill in logic for guessing word. The guess submission is already linked.
+
+    
+
+
     console.log("Connection Closed");
     res.redirect('/');
 });
@@ -46,6 +50,13 @@ app.get('/api/loadWord', async (req, res) => {
     res.json(wordData);
     
 });
+
+app.get('/api/loadGuessesLeft', async (req, res) => {
+    await client.connect();
+
+    const guessesLeft = await db.collection('ClientData').find({}).toArray();
+    res.json(guessesLeft);
+})
 
 // Update the timesPlayed record in the db
 app.get('/api/updateTimesPlayed', async (req, res) => 

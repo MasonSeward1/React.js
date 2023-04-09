@@ -12,8 +12,6 @@ const ViewGameStats = (props) => {
                 <p>If the data does not appear in a moment, please refresh the page.</p>
             </>
         )
-    
-    console.log(statistics.winStreak);
 
     return (
         <>
@@ -23,7 +21,7 @@ const ViewGameStats = (props) => {
                 statistics.map(stat => 
                     [
                     <ListGroup id="movie_display">
-                        <ListGroup.Item >Guesses left: {stat.guessesLeft}</ListGroup.Item>
+                        <ListGroup.Item>Guesses left: {stat.guessesLeft}</ListGroup.Item>
                         <ListGroup.Item>Times Played: {stat.timesPlayed}</ListGroup.Item>
                         {/* <ListGroup.Item>Average Score: {stats.avgScore}</ListGroup.Item> */}
                         <ListGroup.Item>Number of 10-win-streaks: {stat.winStreak}</ListGroup.Item>
