@@ -69,6 +69,15 @@ app.get('/api/updateTimesPlayed', async (req, res) =>
     )
 })
 
+app.get('/api/updateGuessesLeft', async (req, res) => {
+    await client.connect();
+    
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $inc: { guessesLeft: -1 }}
+    )
+})
+
 app.listen(8000, () => {
     console.log(`Example app listening on port ${port}`)
 });

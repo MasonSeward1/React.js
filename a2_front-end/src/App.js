@@ -1,7 +1,8 @@
 import './App.css';
 import { Route, Routes } from "react-router-dom";
-import HandleGameLogic from './pages/SubmitGuess';
+import SubmitGuess from './pages/SubmitGuess';
 import ViewGameStats from './pages/Statistics';
+import guessWord from './logic/GuessWord';
 import NavigationBar from './Navbar';
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -46,8 +47,9 @@ function App()
     <>
       <NavigationBar />
          <Routes>
-           <Route path="/" element={<HandleGameLogic stats={(gameStatistics)} gl={(guessesLeft)}/>} />
+           <Route path="/" element={<SubmitGuess stats={(gameStatistics)} gl={(guessesLeft)} word={(words)} />} />
            <Route path="/ViewStatistics" element={<ViewGameStats stats={(gameStatistics)} />} />
+           <Route path="/guessWord" element={<guessWord word={(words)} />} />
          </Routes>
     </>
     );
