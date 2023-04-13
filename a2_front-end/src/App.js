@@ -45,7 +45,7 @@ function App()
          <Routes>
            <Route path="/" element={<SubmitGuess stats={(gameStatistics)} gl={(guessesLeft)} word={(words)} />} />
            <Route path="/ViewStatistics" element={<ViewGameStats stats={(gameStatistics)} />} />
-           <Route path="/guessWord" element={<guessWord word={(words)} gl={(guessesLeft)}/>} />
+           <Route path="/guessWord" element={<guessWord word={(words)} gl={(guessesLeft)}  />} />
          </Routes>
     </>
     );

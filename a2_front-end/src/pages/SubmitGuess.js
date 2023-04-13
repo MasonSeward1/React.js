@@ -8,6 +8,7 @@ export default function SubmitGuess(props) {
 
     var currentDate = new Date().getDate();
     var lastPlayed = localStorage.getItem("lastPlayed");
+    console.log(currentDate)
 
     const txtWordGuess = useRef();
 
@@ -17,7 +18,7 @@ export default function SubmitGuess(props) {
         fetch('/api/setWord').then(reponse => reponse.json()).catch(e=>console.log(e.message));
     }
 
-    if (currentDate == lastPlayed || guesses === 0)
+    if (currentDate == lastPlayed && guesses === 0)
     {
         return (<h1>You have attempted to guess the word on the {lastPlayed} of the month, and have either guessed the word or are out of guesses.</h1>)
     }

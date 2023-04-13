@@ -5,12 +5,13 @@ export default function guessWord(props)
     const guesses = props.gl;
     console.log(word);
 
-    if (word === userGuess)
+    if (word == userGuess)
     {
         props.preventDefault();
         alert("You have guessed the word! Play again tomorrow.");
         fetch('/api/wordGuessed').then(response => response.text()).catch(e => console.log(e))
         fetch('/api/updateWinStreak').then(response => response.text()).catch(e => console.log(e))
+        fetch('/api/updateWins').then(response => response.text()).catch(e => console.log(e))
         window.location.href = "/ViewStatistics";
     }
     else if (word !== userGuess && guesses === 0)

@@ -23,7 +23,7 @@ const ViewGameStats = (props) => {
                     <ListGroup id="movie_display">
                         <ListGroup.Item>Guesses left: {stat.guessesLeft}</ListGroup.Item>
                         <ListGroup.Item>Times Played: {stat.timesPlayed}</ListGroup.Item>
-                        {/* <ListGroup.Item>Average Score: {stats.avgScore}</ListGroup.Item> */}
+                        <ListGroup.Item>Number of wins: {stat.wins}</ListGroup.Item>
                         <ListGroup.Item>Number of win-streaks: {stat.winStreak}</ListGroup.Item>
                     </ListGroup>
                     ])

@@ -20,6 +20,7 @@ app.get('/api/loadStatistics', async (req, res) => {
             {
                 "guessesLeft": 5,
                 "timesPlayed": 0,
+                "wins": 0,
                 "winStreak": 0,
                 "dataType": "player"
             })
@@ -61,6 +62,13 @@ app.get('/api/updateWinStreak', async (req, res) => {
     db.collection("ClientData").updateOne(
         { dataType: "player" },
         { $inc: { winStreak: 1 }}
+    )
+})
+
+app.get('/api/updateWins', async (req, res) => {
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $inc: { wins: 1 }}
     )
 })
 
