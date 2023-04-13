@@ -9,17 +9,6 @@ const db = client.db('CP3010Project');
 app.use(express.urlencoded({extended: false}));
 // app.use(express.static(path.join(__dirname, '../build')));
 
-// Submit guess
-app.post('/api/guessWord', async (req, res) => { 
-    //TODO fill in logic for guessing word. The guess submission is already linked.
-
-    
-
-
-    console.log("Connection Closed");
-    res.redirect('/');
-});
-
 // Load statistics
 app.get('/api/loadStatistics', async (req, res) => {
     await client.connect();
@@ -27,10 +16,9 @@ app.get('/api/loadStatistics', async (req, res) => {
 
     if (statisticData.length === 0)
     {
-        const insertOperation = await db.collection('ClientData').insertOne(
+        await db.collection('ClientData').insertOne(
             {
-                "eligable": true,
-                "guessesLeft": 3,
+                "guessesLeft": 5,
                 "timesPlayed": 0,
                 "winStreak": 0,
                 "dataType": "player"
@@ -42,14 +30,46 @@ app.get('/api/loadStatistics', async (req, res) => {
     }
 });
 
+app.get('/api/wordGuessed', async (req, res) => {
+    res.redirect("/ViewStatistics");
+})
+
 // Load word
 app.get('/api/loadWord', async (req, res) => {
     await client.connect();
+    const selectedWordArray = await db.collection('wordOfDay').aggregate([{$sample:{size:1}}]).toArray();
+    var selectedWord;
 
-    const wordData = await db.collection('words').aggregate([{$sample:{size:1}}]).toArray();
-    res.json(wordData);
-    
+    selectedWordArray.map(word => selectedWord = word.word);
+    res.json(selectedWord);    
 });
+
+app.get("/api/setWord", async (req, res) => {
+    await client.connect();
+    var retrievedWord = await db.collection('words').aggregate([{$sample:{size:1}}]).toArray();
+    var selectedWord;
+
+    retrievedWord.map(word => selectedWord = word.word);
+
+    db.collection("wordOfDay").updateOne(
+        { dataType: "wordOfDay" },
+        { $set: { word: selectedWord }}
+    )
+})
+
+app.get('/api/updateWinStreak', async (req, res) => {
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $inc: { winStreak: 1 }}
+    )
+})
+
+app.get('/api/deleteWinStreak', async (req, res) => {
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $set: { winStreak: 0 }}
+    )
+})
 
 app.get('/api/loadGuessesLeft', async (req, res) => {
     await client.connect();
@@ -75,6 +95,15 @@ app.get('/api/updateGuessesLeft', async (req, res) => {
     db.collection("ClientData").updateOne(
         { dataType: "player" },
         { $inc: { guessesLeft: -1 }}
+    )
+})
+
+app.get("/api/resetGuessesLeft", async (req, res) => {
+    await client.connect();
+
+    db.collection("ClientData").updateOne(
+        { dataType: "player" },
+        { $set: { guessesLeft: 5 }}
     )
 })
 

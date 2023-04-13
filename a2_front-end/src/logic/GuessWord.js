@@ -1,23 +1,26 @@
-
-
 export default function guessWord(props)
 {
-    props.preventDefault();
     const word = props.target.word.value;
     const userGuess = props.target.guess.value;
-    // console.log(word);
+    const guesses = props.gl;
+    console.log(word);
 
     if (word === userGuess)
     {
-        //TODO fill this in
-        console.log("the word matches");
+        props.preventDefault();
+        alert("You have guessed the word! Play again tomorrow.");
+        fetch('/api/wordGuessed').then(response => response.text()).catch(e => console.log(e))
+        fetch('/api/updateWinStreak').then(response => response.text()).catch(e => console.log(e))
+        window.location.href = "/ViewStatistics";
+    }
+    else if (word !== userGuess && guesses === 0)
+    {
+        alert("Game over!");
+        fetch('/api/deleteWinStreak').then(response => response.text()).catch(e => console.log(e))
     }
     else
     {
-        console.log("Wrong word");
-
-        fetch('/api/updateGuessesLeft')
-        .then(response => response.text())
-        .catch(e => console.log(e))
+        alert("Guess again!");
+        fetch('/api/updateGuessesLeft').then(response => response.text()).catch(e => console.log(e))
     }
 }

@@ -2,7 +2,6 @@ import './App.css';
 import { Route, Routes } from "react-router-dom";
 import SubmitGuess from './pages/SubmitGuess';
 import ViewGameStats from './pages/Statistics';
-import guessWord from './logic/GuessWord';
 import NavigationBar from './Navbar';
 import React, { useState, useEffect } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -22,14 +21,11 @@ function App()
     let [words, setWords] = useState(null);
 
     useEffect( () => {
-      fetch('/api/loadWord')
+      fetch("/api/loadWord")
       .then(response => response.json())
-      .then(json => {
-        const randomWord = json[Math.floor(Math.random()*json.length)]
-        setWords(randomWord.word);
-      })
-      .catch(e=>console.log(e.message))
-    }, [])
+      .then(r => setWords(r))
+      .catch(e=>console.log(e))
+    })
 
     let [guessesLeft, setGuessesLeft] = useState(null);
 
@@ -49,7 +45,7 @@ function App()
          <Routes>
            <Route path="/" element={<SubmitGuess stats={(gameStatistics)} gl={(guessesLeft)} word={(words)} />} />
            <Route path="/ViewStatistics" element={<ViewGameStats stats={(gameStatistics)} />} />
-           <Route path="/guessWord" element={<guessWord word={(words)} />} />
+           <Route path="/guessWord" element={<guessWord word={(words)} gl={(guessesLeft)}/>} />
          </Routes>
     </>
     );
