@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+/src/localhost-key.pem
+/src/localhost.pem
+/src/cp3010Project.ppk
 
 # testing
 /coverage
