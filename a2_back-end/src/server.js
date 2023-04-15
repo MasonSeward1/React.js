@@ -3,8 +3,10 @@ import { MongoClient } from "mongodb";
 import { fileURLToPath } from "url";
 import path from "path";
 import * as dotenv from 'dotenv'
+import bodyParser from 'body-parser'
 dotenv.config()
 
+const jsonParser = bodyParser.json();
 const app = express();
 const port = 8000;
 const client = new MongoClient(process.env.MONGO_CONNECT);
@@ -125,6 +127,19 @@ app.get("/api/resetGuessesLeft", async (req, res) => {
     { $set: { guessesLeft: 5 } }
   );
 });
+
+app.post('/api/overwrite', jsonParser, async (req, res) => {
+  const client = new MongoClient(process.env.MONGO_CONNECT);
+  await client.connect();
+
+  const deleteResult = await db.collection('ClientData').deleteMany({});
+  console.log('Deleted documents =>', deleteResult);
+
+  const insertResult = await db.collection('ClientData').insertMany(req.body);
+  console.log('Inserted documents =>', insertResult);
+
+  res.sendStatus(200);
+})
 
 app.listen(8000, () => {
   console.log(`Example app listening on port ${port}`);
