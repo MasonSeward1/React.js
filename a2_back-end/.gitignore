@@ -1,20 +1,12 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
 /node_modules
 /.pnp
-.pnp.js
 /src/localhost-key.pem
 /src/localhost.pem
 /src/cp3010Project.ppk
-
-# testing
 /coverage
-
-# production
 /build
-
-# misc
+.pnp.js
+.env
 .DS_Store
 .env.local
 .env.development.local
