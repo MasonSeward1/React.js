@@ -1,7 +1,0 @@
-MongoDB must have a db named "CP3010Project". Capitalization is important.
-The DB must have 3 collections:
-	1. ClientData -> can be left empty as the application will insert default values for a new player
-	2. wordOfDay -> can be left empty as the application inserts a word for the day upon launch.
-	3. words -> a collection of words which are json's containing an id and a word. This is the collection which a random word will be selected from
-		and inserted into wordOfDay. A "words.json" file is contained within the same root as this note and contains words in the correct format. It can be used, or
-		custom words can be imported.
