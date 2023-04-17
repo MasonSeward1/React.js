@@ -1,5 +1,4 @@
 # Branch containing the code for the CP3010 Project.
-Please see the prerequisites file in the code directory
 
 # Getting Started with Create React App
 
