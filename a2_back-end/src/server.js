@@ -13,7 +13,6 @@ const client = new MongoClient(process.env.MONGO_CONNECT);
 const db = client.db("CP3010Project");
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "../build")));
 
@@ -141,6 +140,31 @@ app.post('/api/overwrite', jsonParser, async (req, res) => {
   res.sendStatus(200);
 })
 
-app.listen(8000, () => {
-  console.log(`Example app listening on port ${port}`);
-});
+app.post('/api/insertStats', jsonParser, async (req, res) => {
+  await db.collection("ClientData").insertOne({
+    guessesLeft: req.body.guessesLeft,
+    timesPlayed: req.body.timesPlayed,
+    wins: req.body.wins,
+    winStreak: req.body.winStreak,
+    dataType: req.body.dataType,
+  });
+})
+
+app.post('/api/changeWordOfDay', jsonParser, async (req, res) => {
+  await db.collection("wordOfDay").updateOne(
+    { dataType: "wordOfDay" },
+    { $set: { word: req.body.word } }
+  );
+})
+
+// // WARNING - THE CODE BELOW DISABLES THE ABILITY TO RUN LOCALLY
+// const httpsServer = https.createServer({
+//   key: fs.readFileSync('/etc/letsencrypt/live/cp3010msproject.xyz/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/cp3010msproject.xyz/fullchain.pem'),
+ 
+//  }, app);
+ 
+//  httpsServer.listen(443, () => {
+//          console.log("HTTPS Server running on port 443");
+//  });
+ 
