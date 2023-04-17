@@ -128,33 +128,66 @@ app.get("/api/resetGuessesLeft", async (req, res) => {
 });
 
 app.post('/api/overwrite', jsonParser, async (req, res) => {
-  const client = new MongoClient(process.env.MONGO_CONNECT);
-  await client.connect();
+  const auth_user = prompt("Enter Username:")
+  const auth_pass = prompt("Enter Password:")
 
-  const deleteResult = await db.collection('ClientData').deleteMany({});
-  console.log('Deleted documents =>', deleteResult);
+  if (auth_user === "Admin" && auth_pass === "CP3010ProjectAdministration")
+  {
+    const client = new MongoClient(process.env.MONGO_CONNECT);
+    await client.connect();
 
-  const insertResult = await db.collection('ClientData').insertMany(req.body);
-  console.log('Inserted documents =>', insertResult);
+    const deleteResult = await db.collection('ClientData').deleteMany({});
+    console.log('Deleted documents =>', deleteResult);
 
-  res.sendStatus(200);
+    const insertResult = await db.collection('ClientData').insertMany(req.body);
+    console.log('Inserted documents =>', insertResult);
+
+    res.sendStatus(200);
+  }
+  else
+  {
+    res.sendStatus(401);
+  }
+  
 })
 
 app.post('/api/insertStats', jsonParser, async (req, res) => {
-  await db.collection("ClientData").insertOne({
-    guessesLeft: req.body.guessesLeft,
-    timesPlayed: req.body.timesPlayed,
-    wins: req.body.wins,
-    winStreak: req.body.winStreak,
-    dataType: req.body.dataType,
-  });
+  const auth_user = prompt("Enter Username:")
+  const auth_pass = prompt("Enter Password:")
+
+  if (auth_user === "Admin" && auth_pass === "CP3010ProjectAdministration")
+  {
+    await db.collection("ClientData").insertOne({
+      guessesLeft: req.body.guessesLeft,
+      timesPlayed: req.body.timesPlayed,
+      wins: req.body.wins,
+      winStreak: req.body.winStreak,
+      dataType: req.body.dataType,
+    });
+    res.sendStatus(200);
+  }
+  else
+  {
+    res.sendStatus(401);
+  }
 })
 
 app.post('/api/changeWordOfDay', jsonParser, async (req, res) => {
-  await db.collection("wordOfDay").updateOne(
-    { dataType: "wordOfDay" },
-    { $set: { word: req.body.word } }
-  );
+  const auth_user = prompt("Enter Username:")
+  const auth_pass = prompt("Enter Password:")
+
+  if (auth_user === "Admin" && auth_pass === "CP3010ProjectAdministration")
+  {
+    await db.collection("wordOfDay").updateOne(
+      { dataType: "wordOfDay" },
+      { $set: { word: req.body.word } }
+    );
+    res.sendStatus(200);
+  }
+  else
+  {
+    res.sendStatus(401);
+  }
 })
 
 // // WARNING - THE CODE BELOW DISABLES THE ABILITY TO RUN LOCALLY
