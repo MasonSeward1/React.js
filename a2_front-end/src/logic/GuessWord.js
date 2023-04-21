@@ -5,6 +5,7 @@ export default function guessWord(props)
     const guesses = props.gl;
     console.log(word);
 
+    fetch('/api/updateTimesPlayed').then(reponse => reponse.json()).catch(e=>console.log(e.message));
     if (word == userGuess)
     {
         props.preventDefault();

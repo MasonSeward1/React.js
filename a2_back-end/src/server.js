@@ -131,10 +131,9 @@ app.post('/api/overwrite', jsonParser, async (req, res) => {
   const auth_user = prompt("Enter Username:")
   const auth_pass = prompt("Enter Password:")
 
-  if (auth_user === "Admin" && auth_pass === "CP3010ProjectAdministration")
-  {
-    const client = new MongoClient(process.env.MONGO_CONNECT);
-    await client.connect();
+
+  const client = new MongoClient(process.env.MONGO_CONNECT);
+  await client.connect();
 
     const deleteResult = await db.collection('ClientData').deleteMany({});
     console.log('Deleted documents =>', deleteResult);
@@ -143,11 +142,7 @@ app.post('/api/overwrite', jsonParser, async (req, res) => {
     console.log('Inserted documents =>', insertResult);
 
     res.sendStatus(200);
-  }
-  else
-  {
-    res.sendStatus(401);
-  }
+
   
 })
 

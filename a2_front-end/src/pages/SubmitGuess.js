@@ -7,26 +7,29 @@ export default function SubmitGuess(props) {
     const word = props.word;
 
     var currentDate = new Date().getDate();
-    var lastPlayed = localStorage.getItem("lastPlayed");
+    var lastPlayed = parseInt(localStorage.getItem("lastPlayed"));
     console.log(currentDate)
 
     const txtWordGuess = useRef();
 
-    if (currentDate != lastPlayed)
+    if (currentDate !== lastPlayed && guesses ===0)
     {
         fetch('/api/resetGuessesLeft').then(reponse => reponse.json()).catch(e=>console.log(e.message));
         fetch('/api/setWord').then(reponse => reponse.json()).catch(e=>console.log(e.message));
-    }
-
-    if (currentDate === lastPlayed && guesses === 0)
-    {
-        return (<h1>You have attempted to guess the word on the {lastPlayed} of the month, and have either guessed the word or are out of guesses.</h1>)
-    }
-    else if (((currentDate !== lastPlayed) || lastPlayed.length === 0) && guesses !== 0)
-    {
         localStorage.setItem("lastPlayed", currentDate)
+    }
 
-        fetch('/api/updateTimesPlayed').then(reponse => reponse.json()).catch(e=>console.log(e.message));
+    if (guesses <= 0)
+    {
+        return (<h1>You are out of guesses.</h1>)
+    }
+    if (lastPlayed === currentDate)
+    {
+        return(<h1>play again tomorrow</h1>)
+    }
+
+    if (((currentDate !== lastPlayed) || lastPlayed.length === 0) && guesses > 0)
+    {
 
         if (guesses != null)
         {
